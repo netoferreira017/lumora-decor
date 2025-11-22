@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+> 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lumora • Casa & Decoração</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+    nav, footer { text-align: center; }
+    nav strong { color: #bfa56a; font-size: 1.3rem; }
+    h1, h2, h3, h4 { color: #222; }
+    .hero {
+      text-align: center;
+      padding: 5rem 1rem;
+      background: linear-gradient(135deg, #fafafa, #e8e8e8);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #2e2e2e;
+      margin-bottom: 1rem;
+    }
+    .hero p { font-size: 1.2rem; color: #666; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-card img { width: 100%; border-radius: 8px; }
+    .product-card h4 { margin-top: 0.5rem; color: #222; }
+    .product-card p { color: #555; font-size: 0.95rem; }
+    .price { font-weight: 600; color: #bfa56a; margin-bottom: 0.3rem; }
+    .old-price { text-decoration: line-through; color: #999; font-size: 0.85rem; margin-left: 0.5rem; }
+    .badge { background-color: #bfa56a; color: white; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+
+    /* Popup */
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #popup.active { display: flex; }
+    .popup-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .popup-content h3 { color: #bfa56a; }
+    .popup-content button {
+      background: #bfa56a;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      margin-top: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Footer and trust seals */
+    .trust-seals {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .trust-seals span {
+      font-size: 0.9rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .social-icons a {
+      color: #bfa56a;
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Popup -->
+  <div id="popup">
+    <div class="popup-content">
+      <h3>🎁 Frete Grátis na Primeira Compra!</h3>
+      <p>Cadastre-se para receber o benefício e novidades exclusivas da Lumora.</p>
+      <form>
+        <input type="email" placeholder="Seu e-mail" required>
+        <button onclick="closePopup()">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Navegação -->
+  <nav class="container-fluid">
+    <ul><li><strong>Lumora</strong></li></ul>
+    <ul>
+      <li><a href="#">Início</a></li>
+      <li><a href="#produtos">Coleção</a></li>
+      <li><a href="#" role="button">Compre Agora</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <main class="container">
+    <section class="hero">
+      <h1>Seu lar, seu estilo.</h1>
+      <p>Descubra a elegância em cada detalhe com a coleção Lumora.</p>
+      <a href="#produtos" role="button" style="background:#bfa56a;">Explorar coleção</a>
+    </section>
+
+    <!-- Catálogo -->
+    <section id="produtos">
+      <hgroup>
+        <h2>Coleção Lumora</h2>
+        <h3>Design sofisticado e acessível</h3>
+      </hgroup>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <span class="badge">🔥 Mais vendido</span>
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80" alt="Luminária LED minimalista">
+          <h4>Luminária LED Minimalista</h4>
+          <p><span class="price">R$ 129,90</span><span class="old-price">R$ 159,90</span></p>
+          <p>Iluminação suave e moderna com acabamento premium.</p>
+          <p>⭐⭐⭐⭐⭐ (123 avaliações)</p>
+          <a href="#" role="button">Comprar agora</a>
+        </div>
+
+        <div class="product-card">
+          <span class="badge">🆕 Novo</span>
+          <img src="https://images.unsplash.com/photo-1616627981286-65d31e7fd5d3?auto=format&fit=crop&w=900&q=80" alt="Quadro decorativo abstrato">
+          <h4>Quadro Abstrato Serenity</h4>
+          <p><span class="price">R$ 89,90</span><span class="old-price">R$ 119,90</span></p>
+          <p>Toque artístico e contemporâneo para o seu ambiente.</p>
+          <p>⭐⭐⭐⭐⭐ (87 avaliações)</p>
+          <a href="#" role="button">Comprar agora</a>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1584948577877-0fef07c6a145?auto=format&fit=crop&w=900&q=80" alt="Relógio moderno">
+          <h4>Relógio de Parede Moderno</h4>
+          <p><span class="price">R$ 119,90</span><span class="old-price">R$ 149,90</span></p>
+          <p>Design minimalista e funcional, perfeito para qualquer ambiente.</p>
+          <p>⭐⭐⭐⭐⭐ (54 avaliações)</p>
+          <a href="#" role="button">Comprar agora</a>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1578898887932-5b4a7c5c83d6?auto=format&fit=crop&w=900&q=80" alt="Vasos decorativos">
+          <h4>Conjunto de Vasos Decorativos</h4>
+          <p><span class="price">R$ 99,90</span><span class="old-price">R$ 129,90</span></p>
+          <p>Elegância natural e versatilidade para seu lar.</p>
+          <p>⭐⭐⭐⭐⭐ (65 avaliações)</p>
+          <a href="#" role="button">Comprar agora</a>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1616628182506-1b9bfeff3c8b?auto=format&fit=crop&w=900&q=80" alt="Almofadas decorativas">
+          <h4>Kit 4 Capas de Almofadas</h4>
+          <p><span class="price">R$ 79,90</span><span class="old-price">R$ 99,90</span></p>
+          <p>Textura macia e cores sofisticadas para sua sala.</p>
+          <p>⭐⭐⭐⭐⭐ (142 avaliações)</p>
+          <a href="#" role="button">Comprar agora</a>
+        </div>
+
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1616627562745-f4b6e0a268b8?auto=format&fit=crop&w=900&q=80" alt="Difusor de aroma">
+          <h4>Difusor de Aromas Zen</h4>
+          <p><span class="price">R$ 109,90</span><span class="old-price">R$ 139,90</span></p>
+          <p>Perfume seu ambiente com tranquilidade e estilo.</p>
+          <p>⭐⭐⭐⭐⭐ (98 avaliações)</p>
+          <a href="#" role="button">Comprar agora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selos -->
+    <div class="trust-seals">
+      <span>🔒 Compra Segura</span>
+      <span>💳 Pagamento Protegido</span>
+      <span>↩️ Garantia de 7 dias</span>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="container">
+    <small>© 2025 Lumora • Todos os direitos reservados</small>
+    <div class="social-icons">
+      <a href="#">Instagram</a> •
+      <a href="#">Pinterest</a> •
+      <a href="#">TikTok</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mostrar popup automaticamente ao carregar
+    window.onload = () => {
+      document.getElementById('popup').classList.add('active');
+    }
+    function closePopup() {
+      document.getElementById('popup').classList.remove('active');
+    }
+  </script>
+
+</body>
+</html>
