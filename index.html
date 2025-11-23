@@ -1,38 +1,136 @@
 @echo off
-echo Criando o site Lumora 2.0...
+title Lumora 2.0 Deluxe — Criador de Site Premium
+color 0A
+
+:: ========================================
+:: CONFIGURAÇÕES
+:: ========================================
+set "HTML_FILE=index.html"
+set "ZIP_FILE=lumora.zip"
+set "SITE_NAME=Lumora"
+set "CSS_URL=https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+set "FONT_URL=https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+
+echo.
+echo 🌿 Iniciando criador do site %SITE_NAME% 2.0 Deluxe...
+echo ===============================================
+echo.
+
+:: ========================================
+:: CRIA O ARQUIVO HTML
+:: ========================================
 (
 echo ^<!DOCTYPE html^>
 echo ^<html lang="pt-BR"^>
 echo ^<head^>
 echo   ^<meta charset="UTF-8" /^>
-echo   ^<meta name="viewport" content="width=device-width, initial-scale=1"^>
-echo   ^<title>Lumora • Casa & Decoração^</title^>
-echo   ^<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"^>
-echo   ^<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"^>
+echo   ^<meta name="viewport" content="width=device-width, initial-scale=1" /^>
+echo   ^<title^>%SITE_NAME% • Casa & Decoração^</title^>
+echo   ^<link rel="stylesheet" href="%CSS_URL%" /^>
+echo   ^<link href="%FONT_URL%" rel="stylesheet" /^>
 echo   ^<style^>
-echo     body {font-family: 'Poppins', sans-serif;background-color: #f8f8f8;color: #333;}
-echo     nav strong {color:#bfa56a;font-size:1.3rem;}
-echo     .hero {text-align:center;padding:5rem 1rem;background:linear-gradient(135deg,#fafafa,#e8e8e8);border-radius:12px;}
-echo     .product-card {background:#fff;border-radius:10px;padding:1rem;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+echo     :root {--gold:#bfa56a;--bg-light:#f8f8f8;--bg-dark:#121212;--text-light:#fff;--text-dark:#333;}
+echo     body {font-family:'Poppins',sans-serif;background-color:var(--bg-light);color:var(--text-dark);transition:background-color .5s,color .5s;}
+echo     @media (prefers-color-scheme: dark) {
+echo       body {background-color:var(--bg-dark);color:var(--text-light);}
+echo       nav,footer {background:rgba(255,255,255,0.03);}
+echo       .product-card {background:#1e1e1e;color:#ddd;}
+echo       input,textarea {background:#222;color:#eee;border-color:#444;}
+echo     }
+echo     nav strong {color:var(--gold);font-size:1.5rem;}
+echo     nav a:hover {color:var(--gold);}
+echo     .hero {text-align:center;padding:6rem 1rem;background:linear-gradient(135deg,#fafafa,#e8e8e8);border-radius:12px;margin-top:2rem;animation:fadeIn 1.2s ease;}
+echo     @media (prefers-color-scheme: dark) {.hero{background:linear-gradient(135deg,#1e1e1e,#2c2c2c);}}
+echo     .hero h1 {font-size:2.8rem;color:inherit;}
+echo     .hero p {font-size:1.2rem;opacity:.85;}
+echo     .grid {gap:2rem;}
+echo     .product-card {border-radius:12px;padding:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.08);transition:transform .25s, box-shadow .25s;animation:slideUp 1.2s ease both;}
+echo     .product-card:hover {transform:translateY(-6px);box-shadow:0 8px 20px rgba(0,0,0,0.12);}
+echo     .product-card img {border-radius:10px;width:100%%;height:auto;}
+echo     footer {text-align:center;padding:2rem 0;margin-top:4rem;color:#777;animation:fadeIn 1.2s ease;}
+echo     form input, form textarea {border-radius:8px;}
+echo     button[type=submit] {background-color:var(--gold);border:none;color:#fff;}
+echo     button[type=submit]:hover {background-color:#a38f58;}
+echo     @keyframes fadeIn {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+echo     @keyframes slideUp {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
 echo   ^</style^>
 echo ^</head^>
 echo ^<body^>
+echo
 echo   ^<nav class="container-fluid"^>
-echo     ^<ul^>^<li^>^<strong^>Lumora^</strong^>^</li^>^</ul^>
-echo     ^<ul^>^<li^>^<a href="#"^>Início^</a^>^</li^>^<li^>^<a href="#produtos"^>Coleção^</a^>^</li^>^</ul^>
+echo     ^<ul^>^<li^>^<strong^>%SITE_NAME%^</strong^>^</li^>^</ul^>
+echo     ^<ul^>^<li^>^<a href="#"^>Início^</a^>^</li^>^<li^>^<a href="#produtos"^>Coleção^</a^>^</li^>^<li^>^<a href="#contato"^>Contato^</a^>^</li^>^</ul^>
 echo   ^</nav^>
+echo
 echo   ^<main class="container"^>
 echo     ^<section class="hero"^>
 echo       ^<h1^>Seu lar, seu estilo.^</h1^>
-echo       ^<p^>Descubra a elegância em cada detalhe com a coleção Lumora.^</p^>
+echo       ^<p^>Descubra a elegância em cada detalhe com a coleção %SITE_NAME%.^</p^>
+echo       ^<a href="#produtos" role="button"^>Explorar coleção</a^>
+echo     ^</section^>
+echo
+echo     ^<section id="produtos" style="margin-top:3rem"^>
+echo       ^<h2 style="text-align:center"^>Coleção em Destaque^</h2^>
+echo       ^<div class="grid"^>
+echo         ^<article class="product-card"^>
+echo           ^<img src="https://source.unsplash.com/600x400/?interior,light" alt="Luminária Aurora" /^>
+echo           ^<h3^>Luminária Aurora^</h3^>
+echo           ^<p^>Ilumine seus ambientes com o charme minimalista e a sofisticação da Aurora.^</p^>
+echo         ^</article^>
+echo         ^<article class="product-card"^>
+echo           ^<img src="https://source.unsplash.com/600x400/?furniture,chair" alt="Poltrona Siena" /^>
+echo           ^<h3^>Poltrona Siena^</h3^>
+echo           ^<p^>Conforto e elegância combinados em um design moderno e acolhedor.^</p^>
+echo         ^</article^>
+echo         ^<article class="product-card"^>
+echo           ^<img src="https://source.unsplash.com/600x400/?sofa,design" alt="Sofá Verona" /^>
+echo           ^<h3^>Sofá Verona^</h3^>
+echo           ^<p^>O equilíbrio perfeito entre estilo, conforto e durabilidade para sua sala.^</p^>
+echo         ^</article^>
+echo         ^<article class="product-card"^>
+echo           ^<img src="https://source.unsplash.com/600x400/?lamp,home" alt="Abajur Lume" /^>
+echo           ^<h3^>Abajur Lume^</h3^>
+echo           ^<p^>Um toque de luz suave e design moderno para qualquer ambiente.^</p^>
+echo         ^</article^>
+echo       ^</div^>
+echo     ^</section^>
+echo
+echo     ^<section id="contato" style="margin-top:4rem;animation:fadeIn 1.2s ease"^>
+echo       ^<h2 style="text-align:center"^>Fale Conosco^</h2^>
+echo       ^<p style="text-align:center"^>Tem alguma dúvida ou quer saber mais sobre nossos produtos? Envie uma mensagem:^</p^>
+echo       ^<form class="grid" onsubmit="event.preventDefault();alert('Mensagem enviada com sucesso! Obrigado pelo contato.');"^>
+echo         ^<input type="text" id="nome" name="nome" placeholder="Seu nome" required /^>
+echo         ^<input type="email" id="email" name="email" placeholder="Seu e-mail" required /^>
+echo         ^<textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" rows="4" required^>^</textarea^>
+echo         ^<button type="submit"^>Enviar Mensagem^</button^>
+echo       ^</form^>
 echo     ^</section^>
 echo   ^</main^>
+echo
+echo   ^<footer^>
+echo     ^<small^>© 2025 %SITE_NAME% • Todos os direitos reservados.^</small^>
+echo   ^</footer^>
+echo
 echo ^</body^>
 echo ^</html^>
-) > index.html
+) > "%HTML_FILE%"
 
-echo Compactando arquivo...
-powershell Compress-Archive -Path index.html -DestinationPath lumora.zip -Force
+echo ✅ Site criado com sucesso: %HTML_FILE%
 echo.
-echo ✅ Arquivo lumora.zip criado com sucesso!
+
+:: ========================================
+:: COMPACTA EM ZIP
+:: ========================================
+if exist "%ZIP_FILE%" del "%ZIP_FILE%" >nul
+powershell Compress-Archive -Path "%HTML_FILE%" -DestinationPath "%ZIP_FILE%" -Force
+
+if exist "%ZIP_FILE%" (
+  echo 💾 Arquivo compactado com sucesso: %ZIP_FILE%
+) else (
+  echo ❌ Erro ao compactar o arquivo.
+)
+
+echo.
+echo 🌙 %SITE_NAME% 2.0 Deluxe finalizado com sucesso!
+echo Abra o arquivo index.html no navegador para visualizar.
 pause
